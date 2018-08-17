@@ -5,8 +5,9 @@ import Localization from './Localization';
 class TopBar extends React.Component<{}, {}>{
     render(){
       return <header className="header">
+        <button className="btn-menu"><span></span><span></span><span></span></button>
         <ul className="top-bar top-left-bar">
-            <li><a href='#'>KnowpiaLogo</a></li>
+            <li><a className="logo" href='#'>KnowpiaLogo</a></li>
             <li><a href='#'>KNOWPedia</a></li>
             <li><a href='#'>Blog</a></li>
         </ul>
