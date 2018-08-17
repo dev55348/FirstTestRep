@@ -68,7 +68,7 @@ module.exports = {
                 return module.context && module.context.indexOf("node_modules") !== -1;
             }
         }),
-        new webpack.EnvironmentPlugin({ 'API_URL': endpoint, 'NODE_ENV': 'production' }),
+      //  new webpack.EnvironmentPlugin({ 'API_URL': endpoint, 'NODE_ENV': 'production' }),
         new ExtractTextPlugin('./public/dist/styles.css'),
     ]
 };

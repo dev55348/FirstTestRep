@@ -9,5 +9,8 @@
       "jsx": "react",
       "lib": ["dom", "es6"],
       "allowJs": true
-    }
+    },
+    "include": [
+      "src/typing.d.ts"
+  ]
   }
