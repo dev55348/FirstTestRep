@@ -1,5 +1,8 @@
 {
   "topbar": {
-    "howItWorks": "How it works"
+    "blog": "Blog",
+    "howItWorks": "How it works",
+    "signIn": "Sign in",
+    "getStarted": "Get Started"
   }
 }

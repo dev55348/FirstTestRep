@@ -10,11 +10,11 @@ class TopBar extends React.Component<any, {}>{
             <ul className="top-bar top-left-bar">
                 <li><a className="logo" href='#'>KnowpiaLogo</a></li>
                 <li><a href='#'>KNOWPedia</a></li>
-                <li><a href='#'>Blog</a></li>
+                <li><a href='#'>{this.props.translate("topbar.blog")}</a></li>
             </ul>
             <ul className="top-bar top-right-bar">
                 <li><a href="#">{this.props.translate("topbar.howItWorks")}</a></li>
-                <li><a href="#">Sign in</a> | <a href="#">Get Started</a></li>
+                <li><a href="#">{this.props.translate("topbar.signIn")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>
                 <li>
                     <Localization />
                 </li>

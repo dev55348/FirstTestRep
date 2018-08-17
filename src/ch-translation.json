@@ -1,5 +1,8 @@
 {
   "topbar": {
-    "howItWorks": "怎麼運行的"
+    "blog": "博客",
+    "howItWorks": "怎麼運行的",
+    "signIn": "签到",
+    "getStarted": "入门"
   }
 }
