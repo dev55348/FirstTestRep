@@ -7,8 +7,11 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize } from 'react-localize-redux';
 import { LocalizeProvider } from "react-localize-redux";
 
+import Bootstrapper from "./containers/Bootstrapper"
+
 var enTranslations = require('./en-translation.json');
 var frTranslations = require('./ch-translation.json');
+
 
 export default class Main extends React.Component<{}, {}>{
     render() {
@@ -21,6 +24,7 @@ export default class Main extends React.Component<{}, {}>{
                     <LocalizationFacadeInitializerLocaled>
                         <Homepage />
                     </LocalizationFacadeInitializerLocaled>
+                    <Bootstrapper/>
                 </div>
             </Provider>
         </LocalizeProvider >
@@ -38,8 +42,8 @@ class LocalizationFacadeInitializer extends React.Component<any, any>
                 { name: "Chineese", code: "ch" }
             ],
             options: {
-                 renderToStaticMarkup,
-                 defaultLanguage:'en'
+                renderToStaticMarkup,
+                defaultLanguage: 'en'
             }
         });
 

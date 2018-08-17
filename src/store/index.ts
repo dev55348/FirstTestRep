@@ -2,11 +2,14 @@ import * as redux from 'redux';
 import { createStore as makeStore, compose,applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import * as userSession from "./userSession"
+import * as feature from "./feature"
+
 
 import * as localRedux from 'react-localize-redux';
 
 export class StoreState{
-    userSession: userSession.state
+    userSession: userSession.state;
+    feature: feature.state;
 }
 
 function combineBudgetEditReducer() {
@@ -14,7 +17,7 @@ function combineBudgetEditReducer() {
     let combinedReducers = {};
 
     combinedReducers[userSession.name] = userSession.Reducer;
-    combinedReducers[userSession.name] = userSession.Reducer;
+    combinedReducers[feature.name] = feature.Reducer;
 
     return redux.combineReducers(combinedReducers);
 };
@@ -22,11 +25,12 @@ function combineBudgetEditReducer() {
 
 let defaultState = {
     userSession: userSession.DefaultState,
+    feature: feature.DefaultState,
+
 };
 
 export function createStore()
 {
-
   return makeStore(
         combineBudgetEditReducer(),
         defaultState,
