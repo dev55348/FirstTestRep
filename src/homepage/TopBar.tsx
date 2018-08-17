@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import Localization from './Localization';
-import { withLocalize,LocalizeContextProps } from 'react-localize-redux';
-
+import { withLocalize } from 'react-localize-redux';
 
 class TopBar extends React.Component<any, {}>{
     render() {
