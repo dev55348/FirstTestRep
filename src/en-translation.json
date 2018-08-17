@@ -1,4 +1,5 @@
 {
-    "greeting": "Hello",
-    "farewell": "Goodbye"
+  "topbar": {
+    "howItWorks": "How it works"
   }
+}

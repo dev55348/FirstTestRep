@@ -1,4 +1,5 @@
 {
-    "greeting":"Bonjour",
-    "farewell": "Au revoir"
+  "topbar": {
+    "howItWorks": "怎麼運行的"
   }
+}
