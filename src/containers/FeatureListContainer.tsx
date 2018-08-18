@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from "react-redux"
-import { Service } from "../store/feature"
+import { ServiceFeature } from "../store/feature"
 
 import { Feature } from "../service/entities"
 import { StoreState } from "../store"

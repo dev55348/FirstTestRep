@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { connect } from "react-redux"
-import { Service } from "../store/feature"
+import { ServiceFeature } from "../store/feature"
+import { ServiceFeaturedBlog } from "../store/featuredBlog"
 
 class BootStrapperStateProps { }
 
 class BootstraperDispatchProps {
     loadFeatures: () => void;
+    loadFeaturedBlog: () => void;
 }
 
 class Bootstrapper extends React.Component<BootStrapperStateProps & BootstraperDispatchProps, {}>
 {
     componentWillMount() {
         this.props.loadFeatures();
+        this.props.loadFeaturedBlog();
     }
 
     render() {
@@ -27,7 +30,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
     return {
         loadFeatures: () => {
-            dispatch(Service.loadFeatures());
+            dispatch(ServiceFeature.loadFeatures());
+
+        },
+        loadFeaturedBlog: () => {
+            dispatch(ServiceFeaturedBlog.loadFeaturedBlog())
         }
     }
 }

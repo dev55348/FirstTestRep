@@ -1,4 +1,4 @@
-export default class FeaturedBlog {
+export  class FeaturedBlog {
     id: string;
     title: string;
     createdAt: Date;

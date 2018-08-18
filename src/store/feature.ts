@@ -57,5 +57,5 @@ export {
     defaultState as DefaultState,
     name as name,
     FeatureState as state,
-    FeatureDispatchService as Service
+    FeatureDispatchService as ServiceFeature
 };
