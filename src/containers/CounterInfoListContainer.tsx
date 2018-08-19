@@ -9,7 +9,8 @@ class BootStrapperStateProps {
     //add is loading
 }
 
-class CounterInfoListContainer extends React.Component<BootStrapperStateProps, {}>
+//temporary tester
+class CountTester extends React.Component<BootStrapperStateProps, {}>
 {
     render() {
         //is loading show spinner
@@ -25,4 +26,9 @@ const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
 }
 
 
-export default connect<BootStrapperStateProps, any, any>(mapStateToProps, null)(CounterInfoListContainer);
+export default connect<BootStrapperStateProps, any, any>(mapStateToProps, null)(CountTester);
+
+
+
+
+
