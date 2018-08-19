@@ -18,6 +18,7 @@ class CounterInfoListContainer extends React.Component<BootStrapperStateProps, {
 }
 
 const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
+
     return {
         countersInfo: state.counterInfo.countersInfo
     };

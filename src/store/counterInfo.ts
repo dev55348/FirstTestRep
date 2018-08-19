@@ -50,7 +50,7 @@ class CounterInfoDispatchService {
 }
 
 
-const name = "сounterInfo";
+const name = "counterInfo";
 
 export {
     reduce as Reducer,
