@@ -15,6 +15,7 @@ class FeaturedBlogListContainer extends React.Component<BootStrapperStateProps, 
     render() {
         //is loading show spinner
         return <div>{this.props.featuredBlog.map(item => <div>{item.title}</div>)}</div>;
+
     }
 }
 
@@ -23,6 +24,5 @@ const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
         featuredBlog: state.featuredBlog.featuredBlog
     };
 }
-
 
 export default connect<BootStrapperStateProps, any, any>(mapStateToProps, null)(FeaturedBlogListContainer);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Homepage from './homepage/Homepage';
+import Homepage from './components/homepage/Homepage';
 import { createStore } from "./store"
 import { Provider } from "react-redux";
 import { renderToStaticMarkup } from "react-dom/server";

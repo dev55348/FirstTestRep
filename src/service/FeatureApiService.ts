@@ -13,7 +13,5 @@ export default class FeatureApiService {
         setTimeout(() => {
             callback(items);
         }, 1000);
-
     }
-
 }

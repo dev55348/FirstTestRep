@@ -1,15 +1,14 @@
 import * as React from 'react';
 
 import Welcome from './Welcome';
-import AsFeaturedIn from './AsFeaturedIn';
 import HowItWorks from './HowItWorks';
 import Counters from './Counters';
 
-import FeatureListContainer from "../containers/FeatureListContainer"
-import FeaturedBlogListContainer from '../containers/FeaturedBlogListContainer';
-import EditorListContainer from '../containers/EditorListContainer';
-import ArticleListContainer from "../containers/ArticleListContainer";
-import CounterInfoListContainer from "../containers/CounterInfoListContainer";
+import FeatureListContainer from "../../containers/FeatureListContainer"
+import FeaturedBlogListContainer from '../../containers/FeaturedBlogListContainer';
+import EditorListContainer from '../../containers/EditorListContainer';
+import ArticleListContainer from "../../containers/ArticleListContainer";
+import CounterInfoListContainer from "../../containers/CounterInfoListContainer";
 
 class Content extends React.Component<{}, {}>{
     render(){
@@ -20,7 +19,7 @@ class Content extends React.Component<{}, {}>{
         <EditorListContainer />
         <ArticleListContainer />
         <CounterInfoListContainer /> */}
-        <AsFeaturedIn />
+        <FeatureListContainer />
         <HowItWorks />
         <Counters />
       </div>
