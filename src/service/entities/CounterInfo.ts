@@ -1,4 +1,4 @@
-export default class CounterInfo {
+export class CounterInfo {
     name: string;
     count: number;
 }

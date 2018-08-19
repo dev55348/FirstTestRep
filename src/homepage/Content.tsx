@@ -8,20 +8,19 @@ import Footer from './Footer';
 
 import FeatureListContainer from "../containers/FeatureListContainer"
 import FeaturedBlogListContainer from '../containers/FeaturedBlogListContainer';
+import EditorListContainer from '../containers/EditorListContainer';
+import ArticleListContainer from "../containers/ArticleListContainer";
+import CounterInfoListContainer from "../containers/CounterInfoListContainer";
 
 class Content extends React.Component<{}, {}>{
     render(){
       return <div className="content-wrapper">
         <Welcome />
-        <AsFeaturedIn />
-
-        <HowItWorks />
-        <Counters />
-
-        <Footer />
-
-        {/* <FeatureListContainer/>
-        <FeaturedBlogListContainer /> */}
+        <FeatureListContainer/>
+        <FeaturedBlogListContainer />
+        <EditorListContainer />
+        <ArticleListContainer />
+        <CounterInfoListContainer />
       </div>
     }
 }
