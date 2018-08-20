@@ -6,8 +6,10 @@ import { Provider } from "react-redux";
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize } from 'react-localize-redux';
 import { LocalizeProvider } from "react-localize-redux";
+import { Switch, Route } from "react-router-dom";
 
 import Bootstrapper from "./containers/Bootstrapper"
+import FeatureListContainer from './containers/FeatureListContainer';
 
 var enTranslations = require('./en-translation.json');
 var frTranslations = require('./ch-translation.json');
@@ -22,7 +24,13 @@ export default class Main extends React.Component<{}, {}>{
             <Provider store={store}>
                 <div>
                     <LocalizationFacadeInitializerLocaled>
-                        <Homepage />
+                        <main>
+                        <Switch>
+                            <Route exact path='/' component={Homepage} />
+                            <Route path='/feature' component={FeatureListContainer} />
+                        </Switch>
+                        </main>
+                        {/* <Homepage /> */}
                     </LocalizationFacadeInitializerLocaled>
                     <Bootstrapper/>
                 </div>

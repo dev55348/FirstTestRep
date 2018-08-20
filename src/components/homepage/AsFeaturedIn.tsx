@@ -5,7 +5,9 @@ class StateProps {
 }
 
 class AsFeaturedIn extends React.Component<StateProps, {}>{
+  
   render() {
+    debugger;
     return <div className="col-2 as-featured-in">
       <h4>As featured in:</h4>
       {this.props.featuresItems.map(item => { return <div className="col-4"><img src={item.imageUrl} alt="" /></div> })}
