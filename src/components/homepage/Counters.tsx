@@ -1,20 +1,18 @@
 import * as React from 'react';
 
-class Counters extends React.Component<{}, {}>{
+class StateProps {
+    counterItems: Array<{ name: string, count: number }>;
+}
+
+class Counters extends React.Component<StateProps, {}>{
     render(){
       return <div className="counters">
-        <div className="col-3">
-            <p className="count">2,142</p>
-            <p className="count-name">Contributors</p>
+        {this.props.counterItems.map(item => {
+        return <div className="col-3">
+            <p className="count">{item.count}</p>
+            <p className="count-name">{item.name}</p>
         </div>
-        <div className="col-3">
-            <p className="count">10,000</p>
-            <p className="count-name">Posts Created</p>
-        </div>
-        <div className="col-3">
-            <p className="count">5,329</p>
-            <p className="count-name">Points Rewarded</p>
-        </div>
+        })}
       </div>
     }
 }

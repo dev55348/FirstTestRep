@@ -18,10 +18,10 @@ class Content extends React.Component<{}, {}>{
         <FeaturedBlogListContainer />
         <EditorListContainer />
         <ArticleListContainer />
-        <CounterInfoListContainer /> */}
+         */}
         <FeatureListContainer />
         <HowItWorks />
-        <Counters />
+        <CounterInfoListContainer />
       </div>
     }
 }
