@@ -14,6 +14,12 @@ var enTranslations = require('./en-translation.json');
 var frTranslations = require('./ch-translation.json');
 import MainLayout from "./components/MainLayout"
 import SearchResultPage from "./components/searchResult/searchResultPage"
+import BlogPage from './components/blog/BlogPage';
+import KnowpediaPage from './components/knowpedia/KnowpediaPage';
+import NotFoundPage from './components/NotFound/NotFoundPage';
+import SignInPage from './components/SignIn/SignInPage';
+import SignUpPage from './components/SignUp/SignUpPage';
+import TcPage from './components/Tc/TcPage'
 
 
 export default class Main extends React.Component<{}, {}>{
@@ -28,7 +34,13 @@ export default class Main extends React.Component<{}, {}>{
                         <MainLayout>
                             <Switch>
                                 <Route exact path='/' component={Homepage} />
-                                <Route path='/search/:searchString' component={SearchResultPage} />
+                                <Route path="/search/:searchString?" component={SearchResultPage} />
+                                <Route path='/blog' component={BlogPage} />
+                                <Route path='/knowpedia' component={KnowpediaPage} />
+                                <Route path='/signin' component={SignInPage}/>
+                                <Route path='/signup' component={SignUpPage} />
+                                <Route path='/tc' component={TcPage} />
+                                <Route component={NotFoundPage}/>
                             </Switch>
                         </MainLayout>
                     </LocalizationFacadeInitializerLocaled>

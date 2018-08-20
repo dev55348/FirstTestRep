@@ -1,8 +1,13 @@
 import * as React from 'react'
+import { RouteComponentProps } from 'react-router';
 
-export default class SearchPage extends React.Component<{}, {}>{
+export default class SearchResultPage extends React.Component<{}, {}>{
+    
     render() {
+        let searchString = this.props["match"]["params"]["searchString"];
+        debugger;
         return <div className="content-wrapper">
+        <h1>{searchString}</h1>
         </div>
     }
 }
