@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { connect } from "react-redux"
-import { ServiceFeature } from "../store/feature"
+import { connect } from "react-redux";
+import { ServiceFeature } from "../store/feature";
 
-import { Article } from "../service/entities"
-import { StoreState } from "../store"
+import { Article } from "../service/entities";
+import { StoreState } from "../store";
+
+import ArticleList from '../components/homepage/ArticleList';
 
 class BootStrapperStateProps {
     articles: Array<Article>;
@@ -14,7 +16,7 @@ class ArticleListContainer extends React.Component<BootStrapperStateProps, {}>
 {
     render() {
         //is loading show spinner
-        return <div>{this.props.articles.map(item => <div>{item.name}</div>)}</div>;
+        return <ArticleList articleItems={this.props.articles.map(item => {return {name: item.name}})}/>
     }
 }
 

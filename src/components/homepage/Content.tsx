@@ -14,14 +14,12 @@ class Content extends React.Component<{}, {}>{
     render(){
       return <div className="content-wrapper">
         <Welcome />
-        {/* <FeatureListContainer/>
-        <FeaturedBlogListContainer />
-        <EditorListContainer />
-        <ArticleListContainer />
-         */}
         <FeatureListContainer />
+        <ArticleListContainer />
+        <FeaturedBlogListContainer />
         <HowItWorks />
         <CounterInfoListContainer />
+        <EditorListContainer />
       </div>
     }
 }
