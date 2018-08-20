@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { connect } from "react-redux"
-import { ServiceFeaturedBlog } from "store/featuredBlog"
+import { connect } from "react-redux";
+import { ServiceFeaturedBlog } from "store/featuredBlog";
 
-import { FeaturedBlog } from "service/entities"
-import { StoreState } from "store"
+import { FeaturedBlog } from "service/entities";
+import { StoreState } from "store";
+import BlogList from '../components/homepage/BlogList';
 
 class BootStrapperStateProps {
     featuredBlog: Array<FeaturedBlog>;
@@ -14,8 +15,7 @@ class FeaturedBlogListContainer extends React.Component<BootStrapperStateProps, 
 {
     render() {
         //is loading show spinner
-        return <div>{this.props.featuredBlog.map(item => <div>{item.title}</div>)}</div>;
-
+        return <BlogList blogItems = {this.props.featuredBlog.map(item => {return {title: item.title, author: item.author, date: item.createdAt}})}/>
     }
 }
 
