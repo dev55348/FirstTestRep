@@ -9,10 +9,11 @@ import { LocalizeProvider } from "react-localize-redux";
 import { Switch, Route } from "react-router-dom";
 
 import Bootstrapper from "./containers/Bootstrapper"
-import FeatureListContainer from './containers/FeatureListContainer';
 
 var enTranslations = require('./en-translation.json');
 var frTranslations = require('./ch-translation.json');
+import MainLayout from "./components/MainLayout"
+import SearchResultPage from "./components/searchResult/searchResultPage"
 
 
 export default class Main extends React.Component<{}, {}>{
@@ -24,15 +25,14 @@ export default class Main extends React.Component<{}, {}>{
             <Provider store={store}>
                 <div>
                     <LocalizationFacadeInitializerLocaled>
-                        <main>
-                        <Switch>
-                            <Route exact path='/' component={Homepage} />
-                            <Route path='/feature' component={FeatureListContainer} />
-                        </Switch>
-                        </main>
-                        {/* <Homepage /> */}
+                        <MainLayout>
+                            <Switch>
+                                <Route exact path='/' component={Homepage} />
+                                <Route path='/search/:searchString' component={SearchResultPage} />
+                            </Switch>
+                        </MainLayout>
                     </LocalizationFacadeInitializerLocaled>
-                    <Bootstrapper/>
+                    <Bootstrapper />
                 </div>
             </Provider>
         </LocalizeProvider >

@@ -1,18 +1,15 @@
 import * as React from 'react';
 
 import './homepage.scss';
-import TopBar from '../header/TopBar';
 import SearchBar from './SearchBar';
 import Content from './Content';
-import Footer from '../footer/Footer';
+import MainLayout from "../MainLayout"
 
 class Homepage extends React.Component<{}, {}>{
-    render(){
-      return <div>
-          <TopBar />
-          <SearchBar />
-          <Content />
-          <Footer />
+    render() {
+        return <div>
+            <SearchBar />
+            <Content />
         </div>
     }
 }
