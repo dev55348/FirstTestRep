@@ -20,6 +20,11 @@ import NotFoundPage from './components/NotFound/NotFoundPage';
 import SignInPage from './components/SignIn/SignInPage';
 import SignUpPage from './components/SignUp/SignUpPage';
 import TcPage from './components/Tc/TcPage'
+import AboutPage from './components/About/AboutPage';
+import ContactPage from './components/Contact/ContactPage';
+import FAQPage from './components/FAQ/FAQPage';
+import HowItWorksPage from './components/HowItWorks/HowItWorksPage';
+import PrivacyPage from './components/Privacy/PrivacyPage';
 
 
 export default class Main extends React.Component<{}, {}>{
@@ -40,6 +45,12 @@ export default class Main extends React.Component<{}, {}>{
                                 <Route path='/signin' component={SignInPage}/>
                                 <Route path='/signup' component={SignUpPage} />
                                 <Route path='/tc' component={TcPage} />
+                                <Route path='/about' component={AboutPage} />
+                                <Route path='/contact' component={ContactPage} />
+                                <Route path='/faq' component={FAQPage} />
+                                <Route path='/howitworks' component={HowItWorksPage} />
+                                <Route path='/privacy' component={PrivacyPage} />
+                                
                                 <Route component={NotFoundPage}/>
                             </Switch>
                         </MainLayout>

@@ -7,6 +7,7 @@ import * as featuredBlog from "./featuredBlog"
 import * as editor from "./editor"
 import * as article from "./article"
 import * as counterInfo from "./counterInfo"
+import * as search from "./search"
 
 import * as localRedux from 'react-localize-redux';
 
@@ -17,6 +18,7 @@ export class StoreState{
     editor: editor.state;
     article: article.state;
     counterInfo: counterInfo.state;
+    search: search.state;
 }
 
 function combineBudgetEditReducer() {
@@ -29,6 +31,7 @@ function combineBudgetEditReducer() {
     combinedReducers[editor.name] = editor.Reducer;
     combinedReducers[article.name] = article.Reducer;
     combinedReducers[counterInfo.name] = counterInfo.Reducer;
+    combinedReducers[search.name] = search.Reducer;
 
     return redux.combineReducers(combinedReducers);
 };
@@ -40,7 +43,8 @@ let defaultState = {
     featuredBlog: featuredBlog.DefaultState,
     editor: editor.DefaultState,
     article: article.DefaultState,
-    counterInfo: counterInfo.DefaultState
+    counterInfo: counterInfo.DefaultState,
+    search: search.DefaultState
 };
 
 export function createStore()
