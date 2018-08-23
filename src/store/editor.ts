@@ -5,14 +5,12 @@ import { StoreState } from "./";
 
 class Actions {
     private static prefix: string = "EDITOR/";
-    public static SetEditorsList = new ActionDeclaration<{ editors: Array<Editor> }>(Actions.prefix + "SET_EDITORS_LIST");
-    //add action which can change is loading
+    public static SetEditorsList = new ActionDeclaration<{editors: Array<Editor> }>(Actions.prefix + "SET_EDITORS_LIST");
     public static Dispose = new ActionDeclaration(Actions.prefix + "DISPOSE");
 }
 
 class EditorState {
     editors: Array<Editor>;
-    //add boolean flag isLoading
 }
 
 const defaultState: EditorState = {
@@ -23,7 +21,7 @@ function reduce(state: EditorState = defaultState, action: any): EditorState {
     switch (action.type) {
 
         case Actions.SetEditorsList.name:
-            return { editors: Actions.SetEditorsList.fromAction(action).editors };
+            return {...state, editors: Actions.SetEditorsList.fromAction(action).editors };
 
         case Actions.Dispose.name:
             return defaultState;
@@ -32,17 +30,13 @@ function reduce(state: EditorState = defaultState, action: any): EditorState {
     }
 }
 
-class FeatureDispatchService {
+class EditorDispatchService {
 
-    public static loadEditors() {
+    public static loadEditors(id: string) {
         return (dispatch, getState: () => StoreState) => {
 
-            // set is loading
-
-            EditorService.getEditors((items) => {
-                dispatch(Actions.SetEditorsList.toAction({ editors: items }));
-
-                // set is not loading
+            EditorService.getEditors(id,(items) => {
+                dispatch(Actions.SetEditorsList.toAction({editors: items }));
             })
 
         }
@@ -57,5 +51,5 @@ export {
     defaultState as DefaultState,
     name as name,
     EditorState as state,
-    FeatureDispatchService as ServiceEditor
+    EditorDispatchService as ServiceEditor
 };

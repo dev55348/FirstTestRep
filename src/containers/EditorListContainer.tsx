@@ -15,7 +15,7 @@ class EditorListContainer extends React.Component<BootStrapperStateProps, {}>
 {
     render() {
         //is loading show spinner
-        return <EditorsList editors = {this.props.editors.map(item => {return {userName: item.userName, countOfPoints: item.countOfPoints, imageUrl: item.imageUrl}})}/>
+        return <EditorsList editors = {this.props.editors.map(item => {return {userName: item.firstName, countOfPoints: item.countOfPosts,imageUrl: item.imgUrl }})}/>
     }
 }
 

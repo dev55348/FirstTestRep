@@ -11,8 +11,8 @@ class BootStrapperStateProps { }
 class BootstraperDispatchProps {
     loadFeatures: () => void;
     loadFeaturedBlog: () => void;
-    loadEditors: () => void;
-    loadArticles: () => void;
+    // loadEditors: (id: string) => void;
+    // loadArticles: (id: string) => void;
     loadCounterInfo: () => void;
 }
 
@@ -21,8 +21,8 @@ class Bootstrapper extends React.Component<BootStrapperStateProps & BootstraperD
     componentWillMount() {
         this.props.loadFeatures();
         this.props.loadFeaturedBlog();
-        this.props.loadEditors();
-        this.props.loadArticles();
+        // this.props.loadEditors("");
+        // this.props.loadArticles("");
         this.props.loadCounterInfo();
     }
 
@@ -45,12 +45,12 @@ const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
         loadFeaturedBlog: () => {
             dispatch(ServiceFeaturedBlog.loadFeaturedBlog())
         },
-        loadEditors: () => {
-            dispatch(ServiceEditor.loadEditors())
-        },
-        loadArticles: () => {
-            dispatch(ServiceArticle.loadArticles())
-        },
+        // loadEditors: (id: string) => {
+        //     dispatch(ServiceEditor.loadEditors(id))
+        // },
+        // loadArticles: (id: string) => {
+        //     dispatch(ServiceArticle.loadArticles(id))
+        // },
         loadCounterInfo: () => {
             dispatch(ServiceCounterInfo.loadCounterInfo())
         }

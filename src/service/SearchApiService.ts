@@ -3,6 +3,7 @@ export default class SearchApiService {
     public static getSearchResults(queryString: string,callback: (items: Array<string>) => void) {
 
         var items: Array<string> = [];
+        // var isLoading: boolean;
         if(queryString === "")
         {
             callback(items);
@@ -15,8 +16,12 @@ export default class SearchApiService {
                 "The winner of the World Cup takes home $38 million in prize money",
                 "The 2018 FIFA World Cup's Biggest Winners and losers So Far"
             ]
+
+            
     
-            callback(items);
+            setTimeout(() => {
+                callback(items);
+            }, 1000);
         }
 
         

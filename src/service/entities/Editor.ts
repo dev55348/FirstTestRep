@@ -1,6 +1,8 @@
 export class Editor {
     public id: string;
-    public userName: string;
-    public countOfPoints: string;
-    public imageUrl: string;
+    public firstName: string;
+    public lastName: string;
+    public email: string;
+    public countOfPosts: number;
+    public imgUrl: string;
 }

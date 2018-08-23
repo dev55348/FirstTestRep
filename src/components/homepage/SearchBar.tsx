@@ -27,7 +27,6 @@ class SearchBar extends React.Component<BootStrapperStateProps & BootstraperDisp
 
   onSearchStringChange = (e) => {
     this.props.loadSerchItems(e.target.value);
-    debugger;
   }
   
   render() {

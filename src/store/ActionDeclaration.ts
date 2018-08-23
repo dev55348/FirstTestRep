@@ -7,6 +7,7 @@ class ActionDeclaration<Command = {}>{
     constructor(name: string) {
         this.name = name;
     }
+    
 
     public toAction(Command: Command = null) {
         return {
@@ -27,7 +28,6 @@ export function batchDispatchComposite(...params) {
 export function reducerBuilder<State>(dispose: string, defaultState: State, actions: Array<ActionDeclaration<any>>) {
 
     return function reduce(state: State = defaultState, action: any): State {
-
         if (action.type == dispose) return defaultState;
         let assign = (pair: any) => lodash.assign({}, state, pair);
 

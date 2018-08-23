@@ -16,7 +16,7 @@ class ArticleListContainer extends React.Component<BootStrapperStateProps, {}>
 {
     render() {
         //is loading show spinner
-        return <ArticleList articleItems={this.props.articles.map(item => {return {name: item.name}})}/>
+        return <ArticleList articleItems={this.props.articles.map(item => {return {name: item.title}})}/>
     }
 }
 

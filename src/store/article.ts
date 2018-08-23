@@ -5,14 +5,12 @@ import { StoreState } from "./";
 
 class Actions {
     private static prefix: string = "ARTICLE/";
-    public static SetArticleList = new ActionDeclaration<{ articles: Array<Article> }>(Actions.prefix + "SET_ARTICLES_LIST");
-    //add action which can change is loading
+    public static SetArticleList = new ActionDeclaration<{id: string, articles: Array<Article> }>(Actions.prefix + "SET_ARTICLES_LIST");
     public static Dispose = new ActionDeclaration(Actions.prefix + "DISPOSE");
 }
 
 class ArticleState {
     articles: Array<Article>;
-    //add boolean flag isLoading
 }
 
 const defaultState: ArticleState = {
@@ -23,7 +21,7 @@ function reduce(state: ArticleState = defaultState, action: any): ArticleState {
     switch (action.type) {
 
         case Actions.SetArticleList.name:
-            return { articles: Actions.SetArticleList.fromAction(action).articles };
+            return {...state, articles: Actions.SetArticleList.fromAction(action).articles };
 
         case Actions.Dispose.name:
             return defaultState;
@@ -34,15 +32,10 @@ function reduce(state: ArticleState = defaultState, action: any): ArticleState {
 
 class ArticleDispatchService {
 
-    public static loadArticles() {
+    public static loadArticles(id: string) {
         return (dispatch, getState: () => StoreState) => {
-
-            // set is loading
-
-            ArticleService.getArticles((items) => {
-                dispatch(Actions.SetArticleList.toAction({ articles: items }));
-
-                // set is not loading
+            ArticleService.getArticles(id,(items) => {
+                dispatch(Actions.SetArticleList.toAction({id: id, articles: items }));
             })
 
         }

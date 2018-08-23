@@ -25,6 +25,8 @@ import ContactPage from './components/Contact/ContactPage';
 import FAQPage from './components/FAQ/FAQPage';
 import HowItWorksPage from './components/HowItWorks/HowItWorksPage';
 import PrivacyPage from './components/Privacy/PrivacyPage';
+import EditorPage from './components/Editor/EditorPage';
+import ArticlePage  from './components/Article/ArticlePage';
 
 
 export default class Main extends React.Component<{}, {}>{
@@ -50,6 +52,8 @@ export default class Main extends React.Component<{}, {}>{
                                 <Route path='/faq' component={FAQPage} />
                                 <Route path='/howitworks' component={HowItWorksPage} />
                                 <Route path='/privacy' component={PrivacyPage} />
+                                <Route path='/article/:id' component={ArticlePage}/>
+                                <Route path='/editor/:id' component={EditorPage}/>
                                 
                                 <Route component={NotFoundPage}/>
                             </Switch>

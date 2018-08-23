@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 class StateProps {
-    editors: Array<{ userName: string, countOfPoints: string, imageUrl: string }>;
+    editors: Array<{ userName: string, countOfPoints: number, imageUrl: string }>;
 }
 
 class EditorsList extends React.Component<StateProps, {}>{

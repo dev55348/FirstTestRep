@@ -5,7 +5,6 @@ export default class SearchResultPage extends React.Component<{}, {}>{
     
     render() {
         let searchString = this.props["match"]["params"]["searchString"];
-        debugger;
         return <div className="content-wrapper">
         <h1>{searchString}</h1>
         </div>

@@ -1,4 +1,6 @@
 export class Article {
     id: string;
-    name: string;
+    title: string;
+    subTitle: string;
+    body: string;
 }
