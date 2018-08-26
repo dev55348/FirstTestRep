@@ -33,7 +33,7 @@ class TopBar extends React.Component<BootStrapperStateProps & BootstraperDispatc
             </ul>
             <ul className="top-bar top-right-bar">
                 <li><a href="#">{this.props.translate("topbar.howItWorks")}</a></li>
-                <li><a href="#" onClick={this.props.loadIsOpen()}>{this.props.translate("topbar.signIn")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>
+                <li><a href="#" onClick={this.props.loadIsOpen}>{this.props.translate("topbar.signIn")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>
                 <li>
                     <Localization />
                 </li>

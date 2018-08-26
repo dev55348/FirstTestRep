@@ -31,7 +31,7 @@ function reduce(state: SignInState = defaultState, action: any): SignInState {
 class SignInDispatchService {
     public static setIsOpen(isOpen: boolean) {
         return (dispatch, getState: () => StoreState) => {
-                dispatch(Actions.SetIsOpen.toAction({isOpen: isOpen}));
+            dispatch(Actions.SetIsOpen.toAction({isOpen: isOpen}));
         }
     }
 }
