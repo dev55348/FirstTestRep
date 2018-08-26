@@ -8,8 +8,10 @@ import * as editor from "./editor"
 import * as article from "./article"
 import * as counterInfo from "./counterInfo"
 import * as search from "./search"
+import * as signIn from "./signIn"
 
 import * as localRedux from 'react-localize-redux';
+import { SignIn } from 'service/entities/SignIn';
 
 export class StoreState{
     userSession: userSession.state;
@@ -19,6 +21,7 @@ export class StoreState{
     article: article.state;
     counterInfo: counterInfo.state;
     search: search.state;
+    signIn: signIn.state;
 }
 
 function combineBudgetEditReducer() {
@@ -32,6 +35,7 @@ function combineBudgetEditReducer() {
     combinedReducers[article.name] = article.Reducer;
     combinedReducers[counterInfo.name] = counterInfo.Reducer;
     combinedReducers[search.name] = search.Reducer;
+    combinedReducers[signIn.name] = signIn.Reducer;
 
     return redux.combineReducers(combinedReducers);
 };
@@ -44,7 +48,8 @@ let defaultState = {
     editor: editor.DefaultState,
     article: article.DefaultState,
     counterInfo: counterInfo.DefaultState,
-    search: search.DefaultState
+    search: search.DefaultState,
+    signIn: signIn.Reducer
 };
 
 export function createStore()

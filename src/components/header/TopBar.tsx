@@ -2,8 +2,28 @@ import * as React from 'react';
 
 import Localization from './Localization';
 import { withLocalize } from 'react-localize-redux';
+import { StoreState } from '../../store';
+import { connect } from 'react-redux';
+import { ServiceSignIn } from '../../store/SignIn';
 
-class TopBar extends React.Component<any, {}>{
+class BootStrapperStateProps {
+    modalIsOpen: boolean;
+}
+class BootstraperDispatchProps {
+  loadIsOpen: () => void;
+}
+
+
+const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
+  return {
+    loadIsOpen: () => {
+        debugger;
+        dispatch(ServiceSignIn.loadIsOpen);
+    }
+  }
+}
+
+class TopBar extends React.Component<BootStrapperStateProps & BootstraperDispatchProps & any, {}>{
     render() {
         return <header className="header">
             <button className="btn-menu"><span></span><span></span><span></span></button>
@@ -14,7 +34,7 @@ class TopBar extends React.Component<any, {}>{
             </ul>
             <ul className="top-bar top-right-bar">
                 <li><a href="#">{this.props.translate("topbar.howItWorks")}</a></li>
-                <li><a href="#">{this.props.translate("topbar.signIn")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>
+                <li><a href="#" onClick={this.props.loadIsOpen()}>{this.props.translate("topbar.signIn")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>
                 <li>
                     <Localization />
                 </li>
@@ -22,4 +42,11 @@ class TopBar extends React.Component<any, {}>{
         </header>
     }
 }
-export default withLocalize<any>(TopBar)
+
+const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
+    return {
+        modalIsOpen: state.signIn.isOpen
+    };
+  }
+
+export default withLocalize<any>(connect<BootStrapperStateProps, BootstraperDispatchProps, any>(mapStateToProps, mapDispatchToProps)(TopBar))

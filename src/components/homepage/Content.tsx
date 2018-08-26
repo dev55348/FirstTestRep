@@ -9,6 +9,7 @@ import FeaturedBlogListContainer from '../../containers/FeaturedBlogListContaine
 import EditorListContainer from '../../containers/EditorListContainer';
 import ArticleListContainer from "../../containers/ArticleListContainer";
 import CounterInfoListContainer from "../../containers/CounterInfoListContainer";
+import SignInPage from '../SignIn/SignInPage';
 
 class Content extends React.Component<{}, {}>{
     render(){
