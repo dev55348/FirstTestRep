@@ -17,8 +17,7 @@ class BootstraperDispatchProps {
 const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
   return {
     loadIsOpen: () => {
-        debugger;
-        dispatch(ServiceSignIn.loadIsOpen);
+        dispatch(ServiceSignIn.setIsOpen(true));
     }
   }
 }

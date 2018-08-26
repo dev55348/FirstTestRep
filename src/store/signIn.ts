@@ -29,19 +29,9 @@ function reduce(state: SignInState = defaultState, action: any): SignInState {
 }
 
 class SignInDispatchService {
-
-    public static loadIsOpen(text: string) {
+    public static setIsOpen(isOpen: boolean) {
         return (dispatch, getState: () => StoreState) => {
-            var open: boolean = true;
-            () => { 
-                debugger;
-                return dispatch(Actions.SetIsOpen.toAction({isOpen: open}));
-            };
-            
-            // SearchService.getSearchResults(text,(items) => {
-            //     // dispatch(Actions.SetResults.toAction({ results: items }));
-            // });
-
+                dispatch(Actions.SetIsOpen.toAction({isOpen: isOpen}));
         }
     }
 }

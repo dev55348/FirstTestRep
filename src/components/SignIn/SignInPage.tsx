@@ -7,14 +7,15 @@ class BootStrapperStateProps {
     modalIsOpen: boolean;
 }
 class BootstraperDispatchProps {
-  loadIsOpen: () => void;
+  loadIsClose: () => void;
 }
 
 
 const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
   return {
-    loadIsOpen: () => {
-        dispatch(ServiceSignIn.loadIsOpen);
+    loadIsClose: () => {
+        debugger;
+        dispatch(ServiceSignIn.setIsOpen(false));
     }
   }
 }
@@ -35,7 +36,7 @@ class SignInPage extends React.Component<BootStrapperStateProps & BootstraperDis
                     <input type="password"/>
                 </div>
             </div>
-            <button >Close</button>
+            <button onClick={this.props.loadIsClose}>Close</button>
             <div className="col-12 middle modal-footer"></div>
         </div>
         

@@ -11,7 +11,7 @@ import * as search from "./search"
 import * as signIn from "./signIn"
 
 import * as localRedux from 'react-localize-redux';
-import { SignIn } from 'service/entities/SignIn';
+import { SignIn } from 'service/entities/signIn';
 
 export class StoreState{
     userSession: userSession.state;
