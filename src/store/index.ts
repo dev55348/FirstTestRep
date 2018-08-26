@@ -49,7 +49,7 @@ let defaultState = {
     article: article.DefaultState,
     counterInfo: counterInfo.DefaultState,
     search: search.DefaultState,
-    signIn: signIn.Reducer
+    signIn: signIn.DefaultState
 };
 
 export function createStore()

@@ -5,31 +5,34 @@ import SignInPage from './SignIn/SignInPage';
 import { StoreState } from '../store';
 import { connect } from 'react-redux';
 
-class BootStrapperStateProps {
-    modalIsOpen: boolean;
-}
-
-class Homepage extends React.Component<BootStrapperStateProps, {}>{
-        
-    // } signInModalvisibleFalse() {
-    //     debugger;
-    //     isOpen = false;
-    // }
+export default class Homepage extends React.Component<{}, {}>{
     render() {
-        debugger;
         return <div>
             <Header />
-             {this.props.children}
+            {this.props.children}
             <Footer />
-            {this.props.modalIsOpen ? <SignInPage /> : null}
+            {SignInContainer}
         </div>
     }
 }
 
-const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
+class SignInPageContainerProps {
+    modalIsOpen: boolean;
+}
+
+class SignInPageContainer extends React.Component<SignInPageContainerProps, {}>
+{
+    render() {
+        if (this.props.modalIsOpen)
+            return <SignInPage />
+        else null;
+    }
+}
+
+const mapStateToProps = (state: StoreState): SignInPageContainerProps => {
     return {
         modalIsOpen: state.signIn.isOpen
     };
-  }
-  
-export default connect<BootStrapperStateProps, any, any>(mapStateToProps)(Homepage)
+}
+
+let SignInContainer = connect<SignInPageContainerProps, any, any>(mapStateToProps)(SignInPageContainer)

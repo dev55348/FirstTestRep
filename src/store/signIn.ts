@@ -12,7 +12,7 @@ class SignInState {
 }
 
 const defaultState: SignInState = {
-    isOpen: true,
+    isOpen: false,
 }
 
 function reduce(state: SignInState = defaultState, action: any): SignInState {
