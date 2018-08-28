@@ -5,6 +5,7 @@ import { withLocalize } from 'react-localize-redux';
 import { StoreState } from '../../store';
 import { connect } from 'react-redux';
 import { ServiceSignIn } from '../../store/SignIn';
+// import { ServiceSignUp } from '../../store/SignUp';
 
 class BootStrapperStateProps {
     modalIsOpen: boolean;
@@ -17,6 +18,7 @@ class BootstraperDispatchProps {
 const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
   return {
     loadIsOpen: () => {
+        debugger;
         dispatch(ServiceSignIn.setIsOpen(true));
     }
   }

@@ -1,33 +1,32 @@
 import ActionDeclaration from "./ActionDeclaration"
-import { StoreState } from ".";
-import { SignIn } from "../service/entities";
-import SignInApiService from "../service/SignInApiService";
+import { StoreState } from "./index";
+import { SignUp } from "../service/entities";
+import SignUpApiService from "../service/SignUpApiService";
 
 class Actions {
-    private static prefix: string = "SIGNIN/";
+    private static prefix: string = "SIGNUP/";
     public static SetIsOpen = new ActionDeclaration<{ isOpen: boolean}>(Actions.prefix + "SET_ISOPEN");
-    public static SendRequest = new ActionDeclaration<{ request: SignIn}>(Actions.prefix + "SEND_REQUEST")
+    public static SendRequest = new ActionDeclaration<{ request: SignUp}>(Actions.prefix + "SEND_REQUEST")
     public static Dispose = new ActionDeclaration(Actions.prefix + "DISPOSE");
 }
 
-class SignInState {
+class SignUpState {
     isOpen: boolean;
-    sendRequest: SignIn;
+    sendRequest: SignUp;
 }
 
-const defaultState: SignInState = {
+const defaultState: SignUpState = {
     isOpen: false,
     sendRequest: null
 }
 
-function reduce(state: SignInState = defaultState, action: any): SignInState {
+function reduce(state: SignUpState = defaultState, action: any): SignUpState {
     switch (action.type) {
-
         case Actions.SetIsOpen.name:
             return {...state,isOpen: Actions.SetIsOpen.fromAction(action).isOpen };
 
         case Actions.SendRequest.name:
-            return {...state,sendRequest: Actions.SendRequest.fromAction(action).request}
+            return {...state,sendRequest: Actions.SendRequest.fromAction(action).request};
 
         case Actions.Dispose.name:
             return defaultState;
@@ -36,15 +35,16 @@ function reduce(state: SignInState = defaultState, action: any): SignInState {
     }
 }
 
-class SignInDispatchService {
+class SignUpDispatchService {
     public static setIsOpen(isOpen: boolean) {
+        debugger;
         return (dispatch, getState: () => StoreState) => {
             dispatch(Actions.SetIsOpen.toAction({isOpen: isOpen}));
         }
     }
-    public static sendRequest(request: SignIn) {
+    public static sendRequest(request: SignUp) {
         return (dispatch, getState: () => StoreState) => {
-            SignInApiService.sendRequest(request,(items) => {
+            SignUpApiService.sendRequest(request,(items) => {
                 
             })
         }
@@ -53,12 +53,12 @@ class SignInDispatchService {
 }
 
 
-const name = "signIn";
+const name = "signUp";
 
 export {
     reduce as Reducer,
     defaultState as DefaultState,
     name as name,
-    SignInState as state,
-    SignInDispatchService as ServiceSignIn
+    SignUpState as state,
+    SignUpDispatchService as ServiceSignUp
 };
