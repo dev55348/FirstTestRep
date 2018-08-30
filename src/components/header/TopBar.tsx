@@ -4,27 +4,32 @@ import Localization from './Localization';
 import { withLocalize } from 'react-localize-redux';
 import { StoreState } from '../../store';
 import { connect } from 'react-redux';
-import { ServiceSignIn } from '../../store/SignIn';
-// import { ServiceSignUp } from '../../store/SignUp';
+import { ServiceSignIn } from '../../store/signIn';
+import { ServiceSignUp } from '../../store/SignUp';
 
-class BootStrapperStateProps {
-    modalIsOpen: boolean;
-}
 class BootstraperDispatchProps {
-  loadIsOpen: () => void;
+  loadSignInIsOpen: () => void;
+  loadSignUpIsOpen: () => void;
+  logOut: () => void;
 }
 
 
 const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
   return {
-    loadIsOpen: () => {
-        debugger;
+    loadSignInIsOpen: () => {
         dispatch(ServiceSignIn.setIsOpen(true));
+    },
+    loadSignUpIsOpen: () => {
+        dispatch(ServiceSignUp.setIsOpen(true));
+    },
+    logOut: () => {
+        localStorage.setItem("userName", "");
+        window.location.reload();
     }
   }
 }
 
-class TopBar extends React.Component<BootStrapperStateProps & BootstraperDispatchProps & any, {}>{
+class TopBar extends React.Component<BootstraperDispatchProps & any, {}>{
     render() {
         return <header className="header">
             <button className="btn-menu"><span></span><span></span><span></span></button>
@@ -35,7 +40,8 @@ class TopBar extends React.Component<BootStrapperStateProps & BootstraperDispatc
             </ul>
             <ul className="top-bar top-right-bar">
                 <li><a href="#">{this.props.translate("topbar.howItWorks")}</a></li>
-                <li><a href="#" onClick={this.props.loadIsOpen}>{this.props.translate("topbar.signIn")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>
+                {localStorage.getItem("userName") !== "" ? <li>Hello {localStorage.getItem("userName")} | <a href="#" onClick={this.props.logOut}>LogOut</a></li>:
+                <li><a href="#" onClick={this.props.loadSignInIsOpen}>{this.props.translate("topbar.signIn")}</a> | <a href="#" onClick={this.props.loadSignUpIsOpen}>{this.props.translate("topbar.signUp")}</a> | <a href="#">{this.props.translate("topbar.getStarted")}</a></li>}
                 <li>
                     <Localization />
                 </li>
@@ -44,10 +50,4 @@ class TopBar extends React.Component<BootStrapperStateProps & BootstraperDispatc
     }
 }
 
-const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
-    return {
-        modalIsOpen: state.signIn.isOpen
-    };
-  }
-
-export default withLocalize<any>(connect<BootStrapperStateProps, BootstraperDispatchProps, any>(mapStateToProps, mapDispatchToProps)(TopBar))
+export default withLocalize<any>(connect<any, BootstraperDispatchProps, any>(null, mapDispatchToProps)(TopBar))

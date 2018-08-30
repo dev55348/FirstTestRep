@@ -8,32 +8,44 @@ import axios  from "../../node_modules/axios";
 
 export default class SignInApiService {
 
-    public static sendRequest(signInData: SignIn,callback: (items: string) => void) {
+    public static sendRequest(signInData: SignIn,callback: (items: string, error: object) => void) {
 
         var items: string = '';
-        var requestUrl = "http://test.api.en.knowpia.cn/user/sign?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzU1NDIwODUsImlhdCI6MTUzNTUzNDg4NSwia2V5IjoiRU42NDAwNTkyIiwic2lkIjoiaGhmcTlvamRvNHJ1ZW0yNXVkM2VuMGFuYjUifQ.a7aue43DKO2mQ7swyorVd5KH26RfJMSjXh_fxb_lHAg";
-        debugger;
-        const params = new URLSearchParams();
-        params.append('account', 'testAPIaccount');
-        params.append('password', '12345678');
+        var requestUrl = "http://test.api.en.knowpia.cn/user/sign?token=";
+        var tokenUrl: string = "http://test.api.en.knowpia.cn/auth/token?appkey=EN6400592&appsecret=d150e9782b333929090f7df2c57t4b3d";
+        
+        
         if(signInData)
         {
-            let headers = {
-                'content-type': 'application/x-www-form-urlencoded'
-            };
-            axios.post(
-                requestUrl,
-                params,
-                {
-                    headers: headers
+            axios.get(tokenUrl)
+            .then((request) => {
+                localStorage.setItem('token', request.data.token);
+                let headers = {
+                    'content-type': 'application/x-www-form-urlencoded'
+                };
+                const paramsSignUp = new URLSearchParams();
+                paramsSignUp.append('account', signInData.account);
+                paramsSignUp.append('password', signInData.password);
+                axios.post(
+                    requestUrl + localStorage.getItem("token"),
+                    paramsSignUp,
+                    {
+                        headers: headers
+                    }
+                ).then((request)=> {
+                    if(request.data.errcode === 0)
+                    {
+                        localStorage.setItem('userName', request.data.subject.account);
+                        window.location.reload();
+                    } else {
+                        var error = {
+                            globalError: request.data.errmsg
+                        }
+                        callback("",error);
+                    }
+                });
                 }
-            ).then((request)=> {
-                debugger;
-            })
-            
+            )
         }
-
-        
     }
-
 }

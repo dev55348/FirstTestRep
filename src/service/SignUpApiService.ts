@@ -8,36 +8,46 @@ import axios  from "../../node_modules/axios";
 
 export default class SignUpApiService {
 
-    public static sendRequest(signUpData: SignUp,callback: (item: object) => void) {
+    public static sendRequest(signUpData: SignUp,callback: (item: object, error: object) => void) {
 
-        var items: string = '';
-        var requestUrl = "http://test.api.en.knowpia.cn/user/regiest?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzUzNzE3MjcsImlhdCI6MTUzNTM2NDUyNywia2V5IjoiRU42NDAwNTkyIiwic2lkIjoiaGhmcTlvamRvNHJ1ZW0yNXVkM2VuMGFuYjUifQ._buFu08bEcL7-JeOXC_ImKa2_2DHNc5YOIKeNWISmHI";
-        debugger;
+        var tokenUrl: string = "http://test.api.en.knowpia.cn/auth/token?appkey=EN6400592&appsecret=d150e9782b333929090f7df2c57t4b3d";
+        var requestUrl = "http://test.api.en.knowpia.cn/user/regiest?token=";
+        
+        
         if(signUpData)
         {
-            var item = {
-                id: 867,
-                pid: 0,
-                account: "testAPIaccount2",
-                mobile: "",
-                email: "testapi2@mail.com",
-                truename: "",
-                prov: "",
-                city: "",
-                dict: "",
-                login: 0,
-                create_time: 1535364612,
-                status: 1,
-                last_ip: "",
-                last_time: 0,
-                nickname: "",
-                sex: 0,
-                birthday: "0000-00-00",
-                profile: ""
-            }
-            setTimeout(() => {
-                callback(item);
-            }, 1000);
+            axios.get(tokenUrl)
+            .then((request) => {
+                localStorage.setItem('token', request.data.token);
+                let headers = {
+                    'content-type': 'application/x-www-form-urlencoded'
+                };
+                const paramsSignUp = new URLSearchParams();
+                paramsSignUp.append('account', signUpData.account);
+                paramsSignUp.append('password', signUpData.password);
+                paramsSignUp.append('email', signUpData.email);
+                axios.put(
+                    requestUrl + localStorage.getItem("token"),
+                    paramsSignUp,
+                    {
+                        headers: headers
+                    }
+                ).then((request)=> {
+                    if(request.data.errcode === 0)
+                    {
+                        localStorage.setItem('userName', request.data.subject.account);
+                        window.location.reload();
+                    } else {
+                        var error = {
+                            globalError: request.data["errmsg"]
+                        }
+                        callback({},error);
+                    }
+                    
+                })
+                }
+            )
+            
             
         }
 

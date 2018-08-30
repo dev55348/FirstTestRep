@@ -6,18 +6,21 @@ import SignUpApiService from "../service/SignUpApiService";
 class Actions {
     private static prefix: string = "SIGNUP/";
     public static SetIsOpen = new ActionDeclaration<{ isOpen: boolean}>(Actions.prefix + "SET_ISOPEN");
-    public static SendRequest = new ActionDeclaration<{ request: SignUp}>(Actions.prefix + "SEND_REQUEST")
+    public static SendRequest = new ActionDeclaration<{ request: SignUp}>(Actions.prefix + "SEND_REQUEST");
+    public static SetError = new ActionDeclaration<{error: object}>(Actions.prefix + "SET_ERROR");
     public static Dispose = new ActionDeclaration(Actions.prefix + "DISPOSE");
 }
 
 class SignUpState {
     isOpen: boolean;
     sendRequest: SignUp;
+    error: object;
 }
 
 const defaultState: SignUpState = {
     isOpen: false,
-    sendRequest: null
+    sendRequest: null,
+    error: {}
 }
 
 function reduce(state: SignUpState = defaultState, action: any): SignUpState {
@@ -28,6 +31,9 @@ function reduce(state: SignUpState = defaultState, action: any): SignUpState {
         case Actions.SendRequest.name:
             return {...state,sendRequest: Actions.SendRequest.fromAction(action).request};
 
+        case Actions.SetError.name:
+        return {...state, error: Actions.SetError.fromAction(action).error}
+
         case Actions.Dispose.name:
             return defaultState;
 
@@ -37,18 +43,23 @@ function reduce(state: SignUpState = defaultState, action: any): SignUpState {
 
 class SignUpDispatchService {
     public static setIsOpen(isOpen: boolean) {
-        debugger;
         return (dispatch, getState: () => StoreState) => {
             dispatch(Actions.SetIsOpen.toAction({isOpen: isOpen}));
         }
     }
     public static sendRequest(request: SignUp) {
         return (dispatch, getState: () => StoreState) => {
-            SignUpApiService.sendRequest(request,(items) => {
-                
+            SignUpApiService.sendRequest(request,(responce,error) => {
+                if(error) {
+                    dispatch(Actions.SetError.toAction({error: error}));
+                }
             })
         }
-            // dispatch(Actions.SendRequest.toAction({request: request}));
+    }
+    public static setError(error: object) {
+        return (dispatch, getState: () => StoreState) => {
+            dispatch(Actions.SetError.toAction({error: error}))
+        }
     }
 }
 
