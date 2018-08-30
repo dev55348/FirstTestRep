@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StoreState } from '../../store';
 import { connect } from 'react-redux';
-import { SignUp }  from '../../service/entities';
+import { SignUp } from '../../service/entities';
 import { ServiceSignUp } from '../../store/signUp';
 import './signUpPage.scss';
 
@@ -10,56 +10,60 @@ class BootStrapperStateProps {
     error: object;
 }
 class BootstraperDispatchProps {
-  setIsClose: () => void;
-  sendRequest: (login: string, pass: string, email: string) => void;
-  setError: (error) => void;
+    setIsClose: () => void;
+    sendRequest: (login: string, pass: string, email: string) => void;
+    setError: (error) => void;
 }
 
 
 const mapDispatchToProps = (dispatch): BootstraperDispatchProps => {
-  return {
-    setIsClose: () => {
-        dispatch(ServiceSignUp.setIsOpen(false));
-    },
-    sendRequest: (login, pass, email) => {
-        var signUpData: SignUp = {
-            account: login,
-            password: pass,
-            email: email
+    return {
+        setIsClose: () => {
+            dispatch(ServiceSignUp.setIsOpen(false));
+        },
+        sendRequest: (login, pass, email) => {
+            var signUpData: SignUp = {
+                account: login,
+                password: pass,
+                email: email
+            }
+            dispatch(ServiceSignUp.sendRequest(signUpData));
+        },
+        setError: (error) => {
+            dispatch(ServiceSignUp.setError(error));
         }
-        dispatch(ServiceSignUp.sendRequest(signUpData));
-    },
-    setError: (error) => {
-        dispatch(ServiceSignUp.setError(error));
     }
-  }
 }
 
 class SignUpPage extends React.Component<BootStrapperStateProps & BootstraperDispatchProps, {}>{
 
-    sendRequest =() => {
+    sendRequest = () => {
         var login = this.refs.formLogin["value"].toString();
         var password = this.refs.formPass["value"].toString();
         var email = this.refs.formEmail["value"].toString();
-        if(login !== "" && password !== "" && email !== "")
-        {
-            this.props.sendRequest(login, password,email);
+        var passwordRepeat = this.refs.formPassRepeat["value"].toString();
+
+        if (login !== "" && password !== "" && email !== "" && passwordRepeat === password) {
+            this.props.sendRequest(login, password, email);
         } else {
             var error = {
                 formLogin: "",
                 formPassword: "",
-                formEmail: ""
+                formEmail: "",
+                formPasswordAreNotEqual: ""
             }
             login === "" ? error.formLogin = "login can not be empty" : "";
             password === "" ? error.formPassword = "password can not be empty" : "";
             email === "" ? error.formEmail = "email can not be empty" : "";
+            passwordRepeat == password ? "" : error.formPasswordAreNotEqual = "passwords are not equals"
+
             this.props.setError(error);
         }
-        
+
     }
-    
+
     render() {
-        return <div style={{display: "block"}} className={`modal open}`}>
+        return <div style={{ display: "block" }} className={`modal open}`}>
             <div className={`modal-content 500 `}>
                 <div className="modal-title">
                     <p className="title">Sign Up</p>
@@ -67,16 +71,23 @@ class SignUpPage extends React.Component<BootStrapperStateProps & BootstraperDis
                 </div>
                 <div className="modal-body">
                     <div className="content-wrapper">
-                        {this.props.error["globalError"] !== "" ? <div style={{color: "red"}}>{this.props.error["globalError"]}</div> : ""}
+                        {this.props.error["globalError"] !== "" ? <div style={{ color: "red" }}>{this.props.error["globalError"]}</div> : ""}
+
                         <label>Username</label>
-                        {this.props.error["formLogin"] !== "" ? <div style={{color: "red"}}>{this.props.error["formLogin"]}</div> : ""}
-                        <input type="text" ref="formLogin"/>
+                        {this.props.error["formLogin"] !== "" ? <div style={{ color: "red" }}>{this.props.error["formLogin"]}</div> : ""}
+                        <input type="text" ref="formLogin" />
+
                         <label>Password</label>
-                        {this.props.error["formPassword"] !== "" ? <div style={{color: "red"}}>{this.props.error["formPassword"]}</div> : ""}
-                        <input type="password" ref="formPass"/>
+                        {this.props.error["formPassword"] !== "" ? <div style={{ color: "red" }}>{this.props.error["formPassword"]}</div> : ""}
+                        <input type="password" ref="formPass" />
+
+                        <label>Password Repeat</label>
+                        {this.props.error["formPasswordAreNotEqual"] !== "" ? <div style={{ color: "red" }}>{this.props.error["formPasswordAreNotEqual"]}</div> : ""}
+                        <input type="password" ref="formPassRepeat" />
+
                         <label>email</label>
-                        {this.props.error["formEmail"] !== "" ? <div style={{color: "red"}}>{this.props.error["formEmail"]}</div> : ""}
-                        <input type="text" ref="formEmail"/>
+                        {this.props.error["formEmail"] !== "" ? <div style={{ color: "red" }}>{this.props.error["formEmail"]}</div> : ""}
+                        <input type="text" ref="formEmail" />
                     </div>
                 </div>
                 <div className="modal-footer">
@@ -93,6 +104,6 @@ const mapStateToProps = (state: StoreState): BootStrapperStateProps => {
         modalIsOpen: state.signUp.isOpen,
         error: state.signUp.error
     };
-  }
-  
+}
+
 export default connect<BootStrapperStateProps, BootstraperDispatchProps, any>(mapStateToProps, mapDispatchToProps)(SignUpPage)
