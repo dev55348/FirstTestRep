@@ -14,6 +14,7 @@
     "@types/react-dom": "^15.5.1",
     "@types/react-redux": "^4.4.47",
     "@types/react-router-dom": "^4.3.0",
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "cross-env": "^5.1.4",
     "css-loader": "0.25.0",

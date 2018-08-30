@@ -3,6 +3,7 @@ import { StoreState } from '../../store';
 import { connect } from 'react-redux';
 import { SignUp }  from '../../service/entities';
 import { ServiceSignUp } from '../../store/signUp';
+import './signUpPage.scss';
 
 class BootStrapperStateProps {
     modalIsOpen: boolean;
@@ -58,29 +59,31 @@ class SignUpPage extends React.Component<BootStrapperStateProps & BootstraperDis
     }
     
     render() {
-        return <div style={{display: "block"}} className={`flex middle center modal open}`}>
-        <div className={`row modal-content 500 `}>
-            <div className="col-12 middle modal-title">Sign Up</div>
-            <div className="col-12 modal-body">
-        <div className="content-wrapper">
-        <label>Sign up</label>
-        {this.props.error["globalError"] !== "" ? <div style={{color: "red"}}>{this.props.error["globalError"]}</div> : ""}
-        <label>Username</label>
-        {this.props.error["formLogin"] !== "" ? <div style={{color: "red"}}>{this.props.error["formLogin"]}</div> : ""}
-        <input type="text" ref="formLogin"/>
-        <label>Password</label>
-        {this.props.error["formPassword"] !== "" ? <div style={{color: "red"}}>{this.props.error["formPassword"]}</div> : ""}
-        <input type="password" ref="formPass"/>
-        <label>email</label>
-        {this.props.error["formEmail"] !== "" ? <div style={{color: "red"}}>{this.props.error["formEmail"]}</div> : ""}
-        <input type="text" ref="formEmail"/>
-        </div>
-        </div>
-            <button onClick={this.sendRequest}>SignUp</button>
-            <button onClick={this.props.setIsClose}>Close</button>
-            <div className="col-12 middle modal-footer"></div>
-        </div>
-        
+        return <div style={{display: "block"}} className={`modal open}`}>
+            <div className={`modal-content 500 `}>
+                <div className="modal-title">
+                    <p className="title">Sign Up</p>
+                    <p className="text">Sign up to start reading, contributing, sharing stories you love, and more!</p>
+                </div>
+                <div className="modal-body">
+                    <div className="content-wrapper">
+                        {this.props.error["globalError"] !== "" ? <div style={{color: "red"}}>{this.props.error["globalError"]}</div> : ""}
+                        <label>Username</label>
+                        {this.props.error["formLogin"] !== "" ? <div style={{color: "red"}}>{this.props.error["formLogin"]}</div> : ""}
+                        <input type="text" ref="formLogin"/>
+                        <label>Password</label>
+                        {this.props.error["formPassword"] !== "" ? <div style={{color: "red"}}>{this.props.error["formPassword"]}</div> : ""}
+                        <input type="password" ref="formPass"/>
+                        <label>email</label>
+                        {this.props.error["formEmail"] !== "" ? <div style={{color: "red"}}>{this.props.error["formEmail"]}</div> : ""}
+                        <input type="text" ref="formEmail"/>
+                    </div>
+                </div>
+                <div className="modal-footer">
+                    <button onClick={this.sendRequest} className="button">SignUp</button>
+                    <button onClick={this.props.setIsClose} className="button">Close</button>
+                </div>
+            </div>
         </div>
     }
 }
